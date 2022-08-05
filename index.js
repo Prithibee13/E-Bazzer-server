@@ -21,7 +21,7 @@ async function run ()
         await client.connect(); 
         const userCollection = client.db('ebazzar').collection('users');
         const productsCollection = client.db('ebazzar').collection('products');
-        
+        const ordersCollection = client.db('ebazzar').collection('orders');
         /* app.put('/users' , async(req,res) =>
         {
             const userDetailes = req.body;
@@ -58,13 +58,36 @@ async function run ()
         app.get('/search/:product' , async(req , res)=>
         {
             const searchProduct = req.params.product;
-            const cursor = productsCollection.find({"name" : searchProduct})
+            const cursor = productsCollection.find({"category" : searchProduct})
             let items;
             items = await cursor.toArray()
             console.log(items);
             res.send(items)
         })
 
+ /*        app.post('/orders' , async(req,res)=>
+        {
+            const doc = req.body
+            
+            const result = await ordersCollection.insertOne(doc)
+            res.send(result)
+        })
+
+        app.get('orderItems' , async(req,res)=>
+        {
+
+        })
+
+        app.put('/payment' , async(req,res)=>
+        {
+
+        })
+
+        app.put('/makeAdmin/:id', async(req,res)=>
+        {
+
+        })
+ */
 
     }
 
