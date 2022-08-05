@@ -65,6 +65,17 @@ async function run ()
             res.send(items)
         })
 
+
+        app.get('/user/:email' , async(req,res) =>
+        {
+            const email = req.params.email;
+            const cursor = userCollection.find({"email" : email})
+            let items;
+            items = await cursor.toArray()
+            console.log(items);
+            res.send(items)
+        })
+
  /*        app.post('/orders' , async(req,res)=>
         {
             const doc = req.body
