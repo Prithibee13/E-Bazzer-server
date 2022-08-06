@@ -21,7 +21,7 @@ async function run ()
         await client.connect(); 
         const userCollection = client.db('ebazzar').collection('users');
         const productsCollection = client.db('ebazzar').collection('products');
-        const ordersCollection = client.db('ebazzar').collection('orders');
+        //const ordersCollection = client.db('ebazzar').collection('orders');
         /* app.put('/users' , async(req,res) =>
         {
             const userDetailes = req.body;
