@@ -97,6 +97,7 @@ async function run ()
         app.put('/makeAdmin/:id', async(req,res)=>
         {
             const id = req.params.id;
+            
 
             const update = req.body;
             const filter = { "_id": ObjectId(id) };
@@ -106,6 +107,16 @@ async function run ()
             }
             const result = await userCollection.updateOne(filter, updateDoc, options);
             res.send(result)
+        })
+
+
+        app.post("/newProduct" , async(req , res)=>
+        {
+            const newProduct = req.body
+  
+            const result = await productsCollection.insertOne(newProduct)
+            res.send(result)
+
         })
  
 
