@@ -92,13 +92,22 @@ async function run ()
         app.put('/payment' , async(req,res)=>
         {
 
-        })
+        })*/
 
         app.put('/makeAdmin/:id', async(req,res)=>
         {
+            const id = req.params.id;
 
+            const update = req.body;
+            const filter = { "_id": ObjectId(id) };
+            const options = { upsert: true }
+            const updateDoc = {
+                $set: update
+            }
+            const result = await userCollection.updateOne(filter, updateDoc, options);
+            res.send(result)
         })
- */
+ 
 
     }
 
