@@ -77,7 +77,7 @@ async function run ()
             res.send(items)
         })
 
-         app.post('/orders' , async(req,res)=>
+        /*  app.post('/orders' , async(req,res)=>
         {
             const doc = req.body
             
@@ -94,7 +94,7 @@ async function run ()
             console.log(items);
             res.send(items)
         })
-
+ */
         /*app.put('/payment' , async(req,res)=>
         {
 
