@@ -21,7 +21,8 @@ async function run ()
         await client.connect(); 
         const userCollection = client.db('ebazzar').collection('users');
         const productsCollection = client.db('ebazzar').collection('products');
-        //const ordersCollection = client.db('ebazzar').collection('orders');
+        const ordersCollection = client.db('ebazzar').collection('orders');
+        const cartCollection = client.db('ebazzar').collection('cart')
         /* app.put('/users' , async(req,res) =>
         {
             const userDetailes = req.body;
@@ -76,7 +77,7 @@ async function run ()
             res.send(items)
         })
 
- /*        app.post('/orders' , async(req,res)=>
+         app.post('/orders' , async(req,res)=>
         {
             const doc = req.body
             
@@ -84,12 +85,17 @@ async function run ()
             res.send(result)
         })
 
-        app.get('orderItems' , async(req,res)=>
+        app.get('/orderItems' , async(req,res)=>
         {
-
+            const query = {};
+            const cursor = ordersCollection.find(query);
+            let items;
+            items = await cursor.toArray();
+            console.log(items);
+            res.send(items)
         })
 
-        app.put('/payment' , async(req,res)=>
+        /*app.put('/payment' , async(req,res)=>
         {
 
         })*/
@@ -117,6 +123,34 @@ async function run ()
             const result = await productsCollection.insertOne(newProduct)
             res.send(result)
 
+        })
+
+
+        app.post('/addCart' , async(req,res)=>
+        {
+            const cartProduct = req.body
+
+            const result = await cartCollection.insertOne(cartProduct)
+
+            res.send(result)
+        })
+
+        app.get('/cartItem/:email' , async(req,res)=>
+        {
+            const user = req.params.email;
+            const cursor = cartCollection.find({"user" : user})
+            let items;
+            items = await cursor.toArray()
+            console.log(items);
+            res.send(items)
+        })
+
+
+        app.post('/cartItem/:email' , async(req , res)=>
+        {
+            const user = req.params.email;
+            const cursor = await cartCollection.deleteMany({"user" : user})
+            res.send(cursor)
         })
  
 
