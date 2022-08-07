@@ -126,16 +126,20 @@ async function run ()
         })
 
 
-        app.post('/addCart' , async(req,res)=>
+        app.put('/addCart/:email' , async(req,res)=>
         {
-            const cartProduct = req.body
-
-            const result = await cartCollection.insertOne(cartProduct)
-
+            const user = req.params.email
+            const update = req.body;
+            const filter = { "user": user };
+            const options = { upsert: true }
+            const updateDoc = {
+                $set: update
+            }
+            const result = await cartCollection.updateOne(filter, updateDoc, options);
             res.send(result)
         })
 
-        app.get('/cartItems' , async(req,res)=>
+        /* app.get('/cartItems' , async(req,res)=>
         {
             const user = req.params.email;
             const cursor = cartCollection.find({"user" : user})
@@ -151,7 +155,7 @@ async function run ()
             const user = req.params.email;
             const cursor = await cartCollection.deleteMany({"user" : user})
             res.send(cursor)
-        })
+        }) */
  
 
     }
