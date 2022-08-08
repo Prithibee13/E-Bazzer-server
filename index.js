@@ -139,7 +139,7 @@ async function run ()
             res.send(result)
         })
 
-        /* app.get('/cartItems' , async(req,res)=>
+         app.get('/cartItems/:users' , async(req,res)=>
         {
             const user = req.params.email;
             const cursor = cartCollection.find({"user" : user})
@@ -149,7 +149,7 @@ async function run ()
             res.send(items)
         })
 
-
+        /*
         app.post('/cartItem/:email' , async(req , res)=>
         {
             const user = req.params.email;
