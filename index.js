@@ -139,9 +139,9 @@ async function run ()
             res.send(result)
         })
 
-         app.get('/cartItems/:users' , async(req,res)=>
+         app.get('/cartItems/:user' , async(req,res)=>
         {
-            const user = req.params.email;
+            const user = req.params.user;
             const cursor = cartCollection.find({"user" : user})
             let items;
             items = await cursor.toArray()
