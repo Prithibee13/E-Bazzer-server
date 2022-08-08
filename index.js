@@ -77,13 +77,14 @@ async function run ()
             res.send(items)
         })
 
-        /*  app.post('/orders' , async(req,res)=>
+          app.post('/orders' , async(req,res)=>
         {
             const doc = req.body
             
             const result = await ordersCollection.insertOne(doc)
             res.send(result)
         })
+        /*
 
         app.get('/orderItems' , async(req,res)=>
         {
@@ -149,13 +150,13 @@ async function run ()
             res.send(items)
         })
 
-        /*
+        
         app.post('/cartItem/:email' , async(req , res)=>
         {
             const user = req.params.email;
-            const cursor = await cartCollection.deleteMany({"user" : user})
+            const cursor = await cartCollection.deleteOne({"user" : user})
             res.send(cursor)
-        }) */
+        }) 
  
 
     }
