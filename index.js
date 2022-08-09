@@ -127,6 +127,17 @@ async function run ()
 
         })
 
+        app.get('/productDetailes/:id' , async(req,res)=>
+        {
+            const id = req.params.id;
+
+            const cursor = productsCollection.find({"_id" : ObjectId(id)})
+            let items;
+            items = await cursor.toArray()
+            console.log(items);
+            res.send(items)
+        })
+
 
         app.post('/addCart' , async(req,res)=>
         {
@@ -147,10 +158,10 @@ async function run ()
         })
 
         
-        app.post('/cartItem/:email' , async(req , res)=>
+        app.post('/cartItem/:id' , async(req , res)=>
         {
-            const user = req.params.email;
-            const cursor = await cartCollection.deleteOne({"user" : user})
+            const id = req.params.id;
+            const cursor = await cartCollection.deleteOne({"_id" : ObjectId(id)})
             res.send(cursor)
         }) 
 
