@@ -131,11 +131,9 @@ async function run ()
         {
             const id = req.params.id;
 
-            const cursor = productsCollection.findOne({"_id" : ObjectId(id)})
-            let items;
-            items = await cursor.toArray()
-            console.log(items);
-            res.send(items)
+            const cursor = await productsCollection.findOne({"_id" : ObjectId(id)})
+            console.log(cursor);
+            res.send(cursor)
         })
 
 
@@ -147,10 +145,10 @@ async function run ()
             res.send(result)
         })
 
-         app.get('/cartItems/:user' , async(req,res)=>
+         app.get('/cartItems/:user' , async (req,res)=>
         {
             const user = req.params.user;
-            const cursor = cartCollection.find({"user" : user})
+            const cursor = await cartCollection.find({"user" : user})
             let items;
             items = await cursor.toArray()
             console.log(items);
