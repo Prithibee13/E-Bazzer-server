@@ -156,7 +156,7 @@ async function run ()
         })
 
 
-         app.get('/products/:id' , async (req,res)=>
+         /* app.get('/products/:id' , async (req,res)=>
         {
             const id = req.params.id;
             const query={"_id": ObjectId(id)};
@@ -164,7 +164,7 @@ async function run ()
                 
             console.log(item);
             res.send(item)
-        })
+        }) */
          
 
         
