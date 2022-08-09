@@ -163,6 +163,16 @@ async function run ()
             res.send(cursor)
         }) */ 
 
+        app.post("/create-payment-intent", async (req, res) => {
+            const totalCost = req.body;
+            const amount = totalCost * 100;
+            const paymentIntent = await stripe.paymentIntents.create({
+              amount: amount,
+              currency: "usd",
+              payment_method_types: ["card"],
+            });
+            res.send({ clientSecret: paymentIntent.client_secret });
+          });
  
 
     }
@@ -176,16 +186,7 @@ async function run ()
 run().catch(console.dir)
 
 
-app.post("/create-payment-intent", async (req, res) => {
-    const totalCost = req.body;
-    const amount = totalCost * 100;
-    const paymentIntent = await stripe.paymentIntents.create({
-      amount: amount,
-      currency: "usd",
-      payment_method_types: ["card"],
-    });
-    res.send({ clientSecret: paymentIntent.client_secret });
-  });
+
   
 
 app.get('/' ,(req,res) =>
