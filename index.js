@@ -128,16 +128,11 @@ async function run ()
         })
 
 
-        app.put('/addCart/:email' , async(req,res)=>
+        app.put('/addCart' , async(req,res)=>
         {
-            const user = req.params.email
-            const update = req.body;
-            const filter = { "user": user };
-            const options = { upsert: true }
-            const updateDoc = {
-                $set: update
-            }
-            const result = await cartCollection.updateOne(filter, updateDoc, options);
+            const doc = req.body;
+            
+            const result = await cartCollection.insertOne(doc);
             res.send(result)
         })
 
