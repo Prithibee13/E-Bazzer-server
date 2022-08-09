@@ -128,7 +128,7 @@ async function run ()
         })
 
 
-        app.put('/addCart' , async(req,res)=>
+        app.post('/addCart' , async(req,res)=>
         {
             const doc = req.body;
             
