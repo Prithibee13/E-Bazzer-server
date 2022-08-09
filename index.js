@@ -155,6 +155,17 @@ async function run ()
             res.send(items)
         })
 
+
+         app.get('/products/:id' , async (req,res)=>
+        {
+            const id = req.params.id;
+            const query={_id: ObjectId(id)}
+            const item = await productsCollection.findOne(query)
+            console.log(item);
+            res.send(item)
+        })
+         
+
         
         app.post('/deleteCartItem' , async(req , res)=>
         {
