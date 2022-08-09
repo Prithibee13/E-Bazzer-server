@@ -159,6 +159,7 @@ async function run ()
         app.post('/deleteCartItem' , async(req , res)=>
         {
             const id = req.body;
+            console.log(id);
             const result = await cartCollection.deleteOne({"_id" : ObjectId(id)})
             res.send(result)
         }) 
