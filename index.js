@@ -161,7 +161,7 @@ async function run ()
             const id = req.body;
             console.log(id);
             const result = await cartCollection.deleteOne({"_id" : ObjectId(id)})
-            res.send(result)
+            res.send({result : result , id : id})
         }) 
 
         app.post("/create-payment-intent", async (req, res) => {
