@@ -127,11 +127,11 @@ async function run ()
 
         })
 
-        app.get('/productDetailes/:id' , async(req,res)=>
+        app.get('/productDetails/:id' , async(req,res)=>
         {
             const id = req.params.id;
 
-            const cursor = productsCollection.find({"_id" : ObjectId(id)})
+            const cursor = productsCollection.findOne({"_id" : ObjectId(id)})
             let items;
             items = await cursor.toArray()
             console.log(items);
