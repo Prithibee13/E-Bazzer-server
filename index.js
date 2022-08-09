@@ -156,11 +156,11 @@ async function run ()
         })
 
         
-        app.delete('/deleteCartItem' , async(req , res)=>
+        app.post('/deleteCartItem' , async(req , res)=>
         {
             const id = req.body;
-            const cursor = await cartCollection.deleteOne({"_id" : ObjectId(id)})
-            res.send(cursor)
+            const result = await cartCollection.deleteOne({"_id" : ObjectId(id)})
+            res.send(result)
         }) 
 
         app.post("/create-payment-intent", async (req, res) => {
