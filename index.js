@@ -156,12 +156,12 @@ async function run ()
         })
 
         
-        /* app.post('/cartItem/:id' , async(req , res)=>
+        app.post('/cartItem/:id' , async(req , res)=>
         {
             const id = req.params.id;
             const cursor = await cartCollection.deleteOne({"_id" : ObjectId(id)})
             res.send(cursor)
-        }) */ 
+        }) 
 
         app.post("/create-payment-intent", async (req, res) => {
             const totalCost = req.body;
